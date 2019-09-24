@@ -27,6 +27,7 @@ public class StringProtocolInitializer extends ChannelInitializer<SocketChannel>
     ServerHandler serverHandler;
 
     @Override
+    //当新建的与客户端通信的NioSocketChannel被注册到EventLoop成功时，该方法会被调用，用于添加业务Handler
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
         pipeline.addLast("decoder", stringDecoder);

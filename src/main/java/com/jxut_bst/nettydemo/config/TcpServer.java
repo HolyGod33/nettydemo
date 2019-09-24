@@ -16,6 +16,17 @@ import java.net.InetSocketAddress;
  * @Date: created in 21:23 2019/9/23
  */
 @Component
+
+/**
+ *=============================
+ * @author: JXUT CXY
+ * @Date: 16:45 2019/9/24
+ * @param null
+ * @return:
+ * @Description: 开启netty服务端
+ * create with IDEA
+ *=============================
+ */
 public class TcpServer {
     @Autowired
     @Qualifier("serverBootstrap")

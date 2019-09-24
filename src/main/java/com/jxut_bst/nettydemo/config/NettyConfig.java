@@ -89,15 +89,19 @@ public class NettyConfig {
     @Autowired
     @Qualifier("StringProtocolInitializer")
     private StringProtocolInitializer protocolInitializer;
+
     @SuppressWarnings("unchecked")
     @Bean(name = "serverBootstrap")
     public ServerBootstrap bootstrap() {
         ServerBootstrap b = new ServerBootstrap();
         b.group(bossGroup(), workerGroup())
+                // 指定Channel
                 .channel(NioServerSocketChannel.class)
                 .childHandler(protocolInitializer);
         Map<ChannelOption<?>, Object> tcpChannelOptions = tcpChannelOptions();
         Set<ChannelOption<?>> keySet = tcpChannelOptions.keySet();
+
+        //配置option  使用map的方式传入参数
         for (@SuppressWarnings("rawtypes")
                 ChannelOption option : keySet) {
             b.option(option, tcpChannelOptions.get(option));

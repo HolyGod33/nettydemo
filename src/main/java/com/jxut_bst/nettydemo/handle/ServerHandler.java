@@ -3,6 +3,7 @@ package com.jxut_bst.nettydemo.handle;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,10 +16,22 @@ import java.net.InetAddress;
  * @Description
  * @Date: created in 21:24 2019/9/23
  */
+@Component
+@Slf4j
 public class ServerHandler extends SimpleChannelInboundHandler<String> {
-    private static final Logger log = LoggerFactory.getLogger(ServerHandler.class);
 
     @Override
+    /**
+     *=============================
+     * @author: JXUT CXY
+     * @Date: 17:07 2019/9/24
+     * @param ctx
+     * @param msg
+     * @return:
+     * @Description: 收到消息后对消息处理的handle
+     * create with IDEA
+     *=============================
+     */
     public void channelRead0(ChannelHandlerContext ctx, String msg)
             throws Exception {
         log.info("client msg:"+msg);
@@ -31,7 +44,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
             ctx.channel().close();
         }else{
             //send to client
-            ctx.channel().writeAndFlush("Yoru msg is:"+msg);
+            ctx.channel().writeAndFlush("Your msg is:"+msg);
 
         }
 
